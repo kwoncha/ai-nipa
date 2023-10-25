@@ -1,0 +1,35 @@
+<%- include('../../shared/includes/head', {pageTitle:'제품 추가'}) %>
+<link rel="stylesheet" href="/styles/forms.css">
+</head>
+<body>
+  <%- include('../../shared/includes/header') %>
+  <main>
+    <h1>제품 추가</h1> <!-- post는 csrfToken으로 해결해야지 가능 -->
+    <form action="/admin/product?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+      <p>
+        <label for="title">제품</label>
+        <input type="text" id="title" name="title" required>
+      </p>
+      <p>
+        <label for="image">이미지</label>
+        <input type="file" id="image" name="image" accept="image/png, image/jpg">
+      </p>
+      <p>
+        <label for="summary">제품 상세</label>
+        <input type="text" id="summary" name="summary" required maxlength="250">
+      </p>
+      <p>
+        <label for="price">가격</label>
+        <input type="number" id="price" name="price" step="10" required>
+      </p>
+      <p>
+        <label for="description">상세 페이지</label>
+        <textarea id="description" name="description" rows="7" required></textarea>
+      </p>
+      <p>
+        <button type="reset" class="btn btn-alt">취소</button>
+        <button type="submit" class="btn">저장</button>
+      </p>
+    </form>
+  </main>
+<%- include('../../shared/includes/footer') %>
